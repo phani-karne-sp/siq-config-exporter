@@ -17,8 +17,18 @@ namespace SiqConfigReport
         {
 
             PrintWelcomeBanner();
-            
-            switch (args[0])
+
+            string theCommand = String.Empty;
+            if (args.Length == 0 || String.IsNullOrWhiteSpace(args[0]))
+            {
+                theCommand = Console.ReadLine();
+            }
+            else
+            {
+                theCommand = args[0];
+            }
+
+            switch (theCommand)
             {
                 case exportConfig:
                     _log.Info(exportConfig);
