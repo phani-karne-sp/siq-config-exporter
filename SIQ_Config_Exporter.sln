@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIQ_Config_Exporter_Console", "SIQ_Config_Exporter_Console\SIQ_Config_Exporter_Console.csproj", "{F93B8178-8668-4A28-89AE-198BDDE61A0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIQ_Config_Exporter_Console_Tests", "SIQ_Config_Exporter_Console_Tests\SIQ_Config_Exporter_Console_Tests.csproj", "{9C352F05-B917-47DD-A14F-0F7149A2561A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F93B8178-8668-4A28-89AE-198BDDE61A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F93B8178-8668-4A28-89AE-198BDDE61A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F93B8178-8668-4A28-89AE-198BDDE61A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F93B8178-8668-4A28-89AE-198BDDE61A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C352F05-B917-47DD-A14F-0F7149A2561A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C352F05-B917-47DD-A14F-0F7149A2561A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C352F05-B917-47DD-A14F-0F7149A2561A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C352F05-B917-47DD-A14F-0F7149A2561A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
