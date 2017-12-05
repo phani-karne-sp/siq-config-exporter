@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using WBX.whiteOPS.Server.ReportingServices;
 using static SiqConfigExport.Constants;
+using SiqConfigReport;
 
 namespace SiqConfigExport
 {
@@ -58,42 +59,42 @@ namespace SiqConfigExport
             IWorkbook workbook = application.Workbooks.Create(1);
 
             IWorksheet worksheet = workbook.Worksheets[0];
-            worksheet.Name = SheetNames.DB_INFO;
-            ImportTable(ds.Tables[SqlStmtKeys.DB_INFO1], worksheet, 1, 1, true);
-            ImportTable(ds.Tables[SqlStmtKeys.DB_INFO2], worksheet, 5, 1, false);
-            ImportTable(ds.Tables[SqlStmtKeys.SIQ_CONFIG1], worksheet, 8, 1, false);
-            ImportTable(ds.Tables[SqlStmtKeys.SIQ_CONFIG2], worksheet, 13, 1, false);
+            worksheet.Name = WorksheetNames.Default.dbInfo;
+            ImportTable(ds.Tables[Queries.Default.dbInfo1], worksheet, 1, 1, true);
+            ImportTable(ds.Tables[Queries.Default.dbInfo2], worksheet, 5, 1, false);
+            ImportTable(ds.Tables[Queries.Default.siqConfig1], worksheet, 8, 1, false);
+            ImportTable(ds.Tables[Queries.Default.siqConfig2], worksheet, 13, 1, false);
             
-            worksheet = workbook.Worksheets.Create(SheetNames.LICENSE);
-            ImportTable(ds.Tables[SqlStmtKeys.LICENSE], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.license);
+            ImportTable(ds.Tables[Queries.Default.license], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.CORE_SERVICES);
-            ImportTable(ds.Tables[SqlStmtKeys.INSTALL_SERVER], worksheet, 1, 1, true);
-            ImportTable(ds.Tables[SqlStmtKeys.INSTALL_SERVICE], worksheet, 3 + ds.Tables[SqlStmtKeys.INSTALL_SERVER].Rows.Count, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.coreServices);
+            ImportTable(ds.Tables[Queries.Default.installServer], worksheet, 1, 1, true);
+            ImportTable(ds.Tables[Queries.Default.installService], worksheet, 3 + ds.Tables[Queries.Default.installServer].Rows.Count, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.IDC);
-            ImportTable(ds.Tables[SqlStmtKeys.IDC], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.idc);
+            ImportTable(ds.Tables[Queries.Default.idc], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.WPC);
-            ImportTable(ds.Tables[SqlStmtKeys.WPC], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.wpc);
+            ImportTable(ds.Tables[Queries.Default.wpc], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.APPS);
-            ImportTable(ds.Tables[SqlStmtKeys.APPS], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.apps);
+            ImportTable(ds.Tables[Queries.Default.apps], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.APP_CONFIGS);
-            ImportTable(ds.Tables[SqlStmtKeys.APP_CONFIGS], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.appConfigs);
+            ImportTable(ds.Tables[Queries.Default.appConfigs], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.TASKS);
-            ImportTable(ds.Tables[SqlStmtKeys.TASKS], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.tasks);
+            ImportTable(ds.Tables[Queries.Default.tasks], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.TASK_RESULTS);
-            ImportTable(ds.Tables[SqlStmtKeys.TASK_RESULTS], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.taskResults);
+            ImportTable(ds.Tables[Queries.Default.taskResults], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.HEALTH_CENTER);
-            ImportTable(ds.Tables[SqlStmtKeys.HEALTH_CENTER], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.healthCenter);
+            ImportTable(ds.Tables[Queries.Default.healthCenter], worksheet, 1, 1, true);
 
-            worksheet = workbook.Worksheets.Create(SheetNames.USERS);
-            ImportTable(ds.Tables[SqlStmtKeys.USERS], worksheet, 1, 1, true);
+            worksheet = workbook.Worksheets.Create(WorksheetNames.Default.users);
+            ImportTable(ds.Tables[Queries.Default.users], worksheet, 1, 1, true);
             
             workbook.SaveAs(GetExcelFileNameString());
             workbook.Close();

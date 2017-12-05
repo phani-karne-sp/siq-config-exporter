@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using static SiqConfigExport.Constants;
+using SiqConfigReport.Properties;
 
 namespace SiqConfigExport
 {
@@ -101,8 +102,8 @@ namespace SiqConfigExport
             _log.Debug("Attempting to resolve assembly: " + assemblyName);
             if (!basePath.EndsWith("\\"))
                 basePath = basePath + "\\";
-            if (!assemblyName.EndsWith(DOT_DLL))
-                assemblyName = assemblyName + DOT_DLL;
+            if (!assemblyName.EndsWith(Settings.Default.dllAssemblyFileExtension))
+                assemblyName = assemblyName + Settings.Default.dllAssemblyFileExtension;
             Assembly assembly = null;
             assembly = Assembly.LoadFile(basePath + assemblyName);
             _log.Debug("Found assembly: " + assembly.FullName);

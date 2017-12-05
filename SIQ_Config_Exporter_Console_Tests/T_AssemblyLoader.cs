@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SiqConfigExport;
 using System.Reflection;
+using SiqConfigReport.Properties;
 
 namespace UnitTestProject1
 {
@@ -40,7 +41,7 @@ namespace UnitTestProject1
 
             //now try the same, but with .dll on the end
             assembly = null;
-            assembly = assemblyLoader.Resolve(basePath, Syncfusion_Compression_Base + Constants.DOT_DLL);
+            assembly = assemblyLoader.Resolve(basePath, Syncfusion_Compression_Base + Settings.Default.dllAssemblyFileExtension);
             Assert.IsNotNull(assembly);
         }
 

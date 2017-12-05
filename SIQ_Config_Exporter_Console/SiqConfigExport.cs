@@ -6,6 +6,7 @@ using System.IO;
 using System.Reflection;
 using static SiqConfigExport.Constants;
 using ILog = log4net.ILog;
+using SiqConfigReport.Properties;
 
 /// <summary>
 /// v0.1 - The first version built for SIQ 4x
@@ -106,7 +107,7 @@ namespace SiqConfigExport
             string assembilyName = args.Name.Split(',')[0];
             //only load it if it is in the pre-defined list.
             if (Array.Exists(assemblyLoader.ResolveTheseOnly, element => element == assembilyName))
-                assembly = assemblyLoader.ResolveOnServer(assembilyName + DOT_DLL);
+                assembly = assemblyLoader.ResolveOnServer(assembilyName + Settings.Default.dllAssemblyFileExtension);
             return assembly;
         }
         
