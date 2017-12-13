@@ -105,6 +105,10 @@
       <HintPath>..\lib\siq-5.1p0\WBX.NHibernateDAO.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WBX.ServerCore, Version=5.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\siq-5.1p0\WBX.ServerCore.dll</HintPath>
+    </Reference>
     <Reference Include="WBXReportingService">
       <HintPath>..\lib\siq-5.1p0\WBXReportingService.dll</HintPath>
       <Private>True</Private>
@@ -136,6 +140,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="WorksheetNames.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

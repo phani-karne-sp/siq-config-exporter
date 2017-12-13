@@ -88,7 +88,7 @@ namespace SiqConfigExport
             //Get the username from the user
             dbuser = GetUsernameFromUser(dbuser);
             //Replace a single quote with 2 single-quotes, that is how we esacpe a single quote in a connection string
-            dbpass = consoleReader.ReadPassword().Replace("'", "''");
+            //dbpass = consoleReader.ReadPassword().Replace("'", "''");
             
             for (int i = 0; i < connArray.Length; i++)
             {

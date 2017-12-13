@@ -31,5 +31,14 @@ namespace SiqConfigReport.Properties {
                 return ((string)(this["dllAssemblyFileExtension"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SECURITYIQ_HOME")]
+        public string siqHomeEnvVar {
+            get {
+                return ((string)(this["siqHomeEnvVar"]));
+            }
+        }
     }
 }

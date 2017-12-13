@@ -15,14 +15,14 @@ namespace SiqConfigExport
 
         public static void HandleSqlException(SqlException e)
         {
-            _log.Error("\n::A SQL Exception Occurred!");
-            _log.Error("::SQL Exception Number: " + e.Number);
+            _log.ErrorFormat("SQL Exception occurred with number: {0}", e.Number);
             _log.Error(e.Message);
             _log.Error(e.StackTrace);
         }
+
         public static void HandleGeneralException(Exception e)
         {
-            _log.Error("::A non-SQL connection error occurred.");
+            _log.Error("An exception occurred.");
             _log.Error(e.Message);
             _log.Error(e.StackTrace);
         }

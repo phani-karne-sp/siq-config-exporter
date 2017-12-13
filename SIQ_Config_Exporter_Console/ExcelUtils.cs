@@ -29,20 +29,20 @@ namespace SiqConfigExport
         )
         {
             //Call the SIQ Excel utility
-            string nameRange =
-                ExcelUtilities.importTable(
-                    table,
-                    table.TableName,
-                    worksheet,
-                    tableRow + 1,
-                    tableColumn,
-                    autofitColumns,
-                    false,
-                    true,
-                    TableBuiltInStyles.TableStyleLight9,
-                    false,
-                    false
-                );
+            string nameRange = null;
+                //ExcelUtilities.importTable(
+                //    table,
+                //    table.TableName,
+                //    worksheet,
+                //    tableRow + 1,
+                //    tableColumn,
+                //    autofitColumns,
+                //    false,
+                //    true,
+                //    TableBuiltInStyles.TableStyleLight9,
+                //    false,
+                //    false
+                //);
             return nameRange;
         }
 
