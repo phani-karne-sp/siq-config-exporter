@@ -25,7 +25,7 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("DB Info")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Database")]
         public string dbInfo {
             get {
                 return ((string)(this["dbInfo"]));
@@ -38,15 +38,6 @@ namespace SecurityIQConfigExporter {
         public string siqConfig {
             get {
                 return ((string)(this["siqConfig"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Email")]
-        public string email {
-            get {
-                return ((string)(this["email"]));
             }
         }
         
@@ -70,7 +61,7 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("IDC")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Identity Collector (IDC)")]
         public string idc {
             get {
                 return ((string)(this["idc"]));
@@ -79,7 +70,7 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("WPC")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Enrichment (DEC)")]
         public string wpc {
             get {
                 return ((string)(this["wpc"]));

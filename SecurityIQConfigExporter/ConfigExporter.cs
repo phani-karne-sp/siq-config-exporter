@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using WBX.whiteOPS.DAO.NHibernate;
 
 namespace SecurityIQConfigExporter
 {
@@ -89,6 +90,8 @@ namespace SecurityIQConfigExporter
             _log.InfoFormat("{0} chosen", exportConfig);
             if (Util.IsSiqHibernateRegKeyPresent())
             {
+                string connString = NHibernateHelper.getConnectionString(NHibernateHelper.DatabaseType.Primary);
+                _log.DebugFormat("conn string {0}", connString);
                 RunExportProcess();
             }
             else

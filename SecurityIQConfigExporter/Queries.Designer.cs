@@ -34,18 +34,10 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select name [SIQ DB Name], create_date [SIQ DB Create Date] FROM sys.databases wh" +
-            "ere name = \'SecurityIQDB\';")]
-        public string dbInfo2 {
-            get {
-                return ((string)(this["dbInfo2"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select scv.name, scv.value from [whiteops].[system_configuration_value] scv where" +
-            " scv.name in(\'Company Name\',\'Version\');")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select scv.name as [Config Item], scv.value as [Value] from [whiteops].[system_co" +
+            "nfiguration_value] scv where scv.name in(\'Company Name\',\'Version\',\'Elastic Searc" +
+            "h data path\', \'Report Web Access Site URL\', \'WBX Business Site\') order by scv.na" +
+            "me;")]
         public string siqConfig1 {
             get {
                 return ((string)(this["siqConfig1"]));
@@ -54,8 +46,9 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select name, value from [crowdSource].[system_configuration_value] where name in(" +
-            "\'SMTP_HOST\',\'Web Site URL\',\'SystemEmailAddress\');")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select name as [Config Item], value as [Value] from [crowdSource].[system_configu" +
+            "ration_value] where name in(\'SMTP_HOST\', \'SMTP_PORT\',\'Web Site URL\',\'SystemEmail" +
+            "Address\') order by name;")]
         public string siqConfig2 {
             get {
                 return ((string)(this["siqConfig2"]));
@@ -64,18 +57,9 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select name, value from [crowdSource].[system_configuration_value] where name in(" +
-            "\'SMTP_HOST\',\'Web Site URL\',\'SystemEmailAddress\');")]
-        public string email {
-            get {
-                return ((string)(this["email"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select l.sku, l.description, l.description, l.module_name, l.license_utilization " +
-            "from whiteops.license l;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select l.module_name as [Module Name], l.sku as [SKU], l.description as [Descript" +
+            "ion], l.license_utilization as [Utilization], l.expiration_date as [Expiration D" +
+            "ate] from [whiteops].[license] l order by [Module Name];")]
         public string license {
             get {
                 return ((string)(this["license"]));
@@ -84,7 +68,8 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select * from whiteops.install_server;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select id as [Server ID], name as [Name], home_path as [Home Path], log_path as [" +
+            "Log Path] from [whiteops].[install_server] order by id;")]
         public string installServer {
             get {
                 return ((string)(this["installServer"]));
@@ -93,7 +78,13 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"select ins.name, ins.technical_name, inss.name InstalledOnServer, ins.port, ins.default_port, ins.server_id, insc.name ServiceType, ins.status_update_date, ins.agent_name, ins.version from whiteops.install_service ins, whiteops.install_service_category insc, whiteops.install_server inss where ins.install_service_category_id = insc.id and ins.installed_server_id = inss.id order by inss.name;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select ins.name as [Service Name], ins.technical_name as [Technical Name], inss.name as [Associated Server], 
+case when ins.port = -1 then null else ins.port end as [Port], case when ins.default_port = -1 then null else ins.default_port end as [Default Port], 
+insc.name as [Service Type], ins.status_update_date as [Status Update Date], ins.agent_name as [Agent Name], ins.version as [Version] 
+from whiteops.install_service ins, whiteops.install_service_category insc, whiteops.install_server inss 
+where ins.install_service_category_id = insc.id 
+	and ins.installed_server_id = inss.id 
+order by inss.name;")]
         public string installService {
             get {
                 return ((string)(this["installService"]));
@@ -102,7 +93,9 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select name [IDC Name] from whiteops.ra_identity_collector where id > 0;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("select name as [IDC Name], is_authentication_store as [Is Authentication Store], " +
+            "access_fulfillment_enabled as [Access Fulfillment Enabled] from whiteops.ra_iden" +
+            "tity_collector where id > 0;")]
         public string idc {
             get {
                 return ((string)(this["idc"]));
@@ -111,7 +104,10 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"select wpc.name [DEC Name], wpct.name [DEC Type], wpc.wpc_configuration_id, wpc.is_logical_wpc, wpc.status_update_date, wpc.logical_status_message, wpc.first_seen_alive from whiteops.wpc wpc, whiteops.wpc_type wpct where wpc.id > 999 and wpc.wpc_type_id = wpct.id;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select wpc.name [DEC Name], wpct.name [DEC Type], wpc.wpc_configuration_id [WPC Configuration Id], wpc.is_logical_wpc [Is Logical WPC], wpc.status_update_date [Status Update Date], 
+wpc.logical_status_message [Status Message], wpc.first_seen_alive [First Seen] 
+from whiteops.wpc wpc, whiteops.wpc_type wpct 
+where wpc.id > 999 and wpc.wpc_type_id = wpct.id;")]
         public string wpc {
             get {
                 return ((string)(this["wpc"]));
@@ -120,7 +116,24 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"select c.name, b.name BamName , b.description [desc] , b.domain_netbios_name NetBIOSname, b.first_crawled_date FirstCrawl, b.last_crawling_time LastCrawl, bt.name BamType, bt.group_code_name BAMGroup , bt.supports_data_classification CanDC, raidc.name IDCname , b.data_classification_installed DCinstalled, pb.installed BAMinstalled, pb.logical_status_message , pb.host_address HostName, isrv.name EventManagerName, isrv2.agent_name PermColl from whiteops.bam b, whiteops.bam_type bt, whiteops.ra_identity_collector raidc, whiteops.physical_bam pb, whiteops.install_service isrv, whiteops.install_service isrv2, whiteops.container c where b.bam_type_id = bt.id and b.ra_identity_collector_id = raidc.id and b.bam_configuration_id = pb.bam_id and b.event_manager_service_id = isrv.id and b.ra_service_id = isrv2.id and b.container_id = c.id;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select c.name [App Name], b.name [BAM Name], b.[description] [Description] , b.domain_netbios_name [Domain NetBIOS Name], b.first_crawled_date [First Crawl], b.last_crawling_time [Last Crawl], 
+bt.name [BAM Type], bt.group_code_name [BAM Group], bt.supports_data_classification [Supports Data Classification], b.data_classification_installed [DC Installed], raidc.name [Identity Collector Name], 
+pb.installed [BAM Installed], pb.logical_status_message [Status Message], pb.host_address [Host Name], isrv.name [Event Manager Name], isrv2.agent_name [Permissions Collector] 
+from 
+	whiteops.bam b, 
+	whiteops.bam_type bt, 
+	whiteops.ra_identity_collector raidc,
+	whiteops.physical_bam pb, 
+	whiteops.install_service isrv, 
+	whiteops.install_service isrv2, 
+	whiteops.container c
+where
+	b.bam_type_id = bt.id 
+	and b.ra_identity_collector_id = raidc.id 
+	and b.bam_configuration_id = pb.bam_id 
+	and b.event_manager_service_id = isrv.id 
+	and b.ra_service_id = isrv2.id 
+	and b.container_id = c.id;")]
         public string apps {
             get {
                 return ((string)(this["apps"]));
@@ -129,7 +142,12 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"select c.name container,  b.name, bcv.name ConfigName, bcv.value from whiteops.bam_configuration_value bcv, whiteops.bam b, whiteops.container c where b.bam_configuration_id = bcv.bam_configuration_id and b.container_id = c.id and bcv.name NOT IN('password','pkcs7Password') order by c.name, b.name, bcv.name;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select c.name [Container],  b.name [Name], bcv.name [Config Item], bcv.value [Value] 
+from whiteops.bam_configuration_value bcv, whiteops.bam b, whiteops.container c 
+where b.bam_configuration_id = bcv.bam_configuration_id 
+and b.container_id = c.id 
+and bcv.name NOT IN('password','pkcs7Password') 
+order by c.name, b.name, bcv.name;")]
         public string appConfigs {
             get {
                 return ((string)(this["appConfigs"]));
@@ -138,7 +156,11 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"select st.created_by, st.[name] TaskName, tt.name TaskType, tst.name TaskSubType, next_run, once_date, schedt.name Freq from whiteops.schedule_task st, whiteops.task_type tt,whiteops.task_sub_type tst, whiteops.schedule_type schedt where st.task_type_id = tt.id and st.task_sub_type_id = tst.id and st.schedule_type_id = schedt.id;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select st.[name] [Task Name], tt.name [Task Type], tst.name [Task SubType], st.created_by [Created By], next_run [Next Run], once_date [Once Date], schedt.name [Frequency] 
+from whiteops.schedule_task st, whiteops.task_type tt,whiteops.task_sub_type tst, whiteops.schedule_type schedt 
+where st.task_type_id = tt.id 
+and st.task_sub_type_id = tst.id 
+and st.schedule_type_id = schedt.id;")]
         public string tasks {
             get {
                 return ((string)(this["tasks"]));
@@ -147,7 +169,14 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"select t.[name] TaskName, tt.name TaskType, tst.name TaskSubType, schedt.name Freq, t.start_date, t.end_date, t.progress, t.result, t.details, [is].agent_name from whiteops.task t left join whiteops.task_type tt ON  t.task_type_id = tt.id left join whiteops.task_sub_type tst ON t.task_sub_type_id = tst.id left join whiteops.schedule_type schedt ON t.schedule_task_id = schedt.id left join whiteops.install_service [is] ON t.install_service_id =  [is].id order by t.name, t.start_date desc;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select t.[name] [Task Name], tt.name [Task Type], tst.name [Task SubType], schedt.name [Frequency], t.start_date [Start Date], t.end_date [End Date], 
+t.progress [Progress], t.result [Result], t.details [Details], [is].agent_name [Agent Name] 
+from whiteops.task t 
+left join whiteops.task_type tt ON  t.task_type_id = tt.id 
+left join whiteops.task_sub_type tst ON t.task_sub_type_id = tst.id 
+left join whiteops.schedule_type schedt ON t.schedule_task_id = schedt.id 
+left join whiteops.install_service [is] ON t.install_service_id =  [is].id 
+order by t.name, t.start_date desc;")]
         public string taskResults {
             get {
                 return ((string)(this["taskResults"]));
@@ -156,7 +185,13 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT x.* FROM ( SELECT DISTINCT name FROM whiteops.install_service ) c CROSS APPLY ( SELECT TOP 100 hce.date, ts.name taskStatusName, ins.agent_name, ins.name serviceName, hce.title, hce.details, hce.level_enum_id from  [whiteops].[health_center_event]  hce, whiteops.install_service ins, whiteops.task_status ts where ins.id = hce.source_id and hce.task_status_enum_id = ts.id and c.name=ins.name order by source_id, [date] desc) x order by servicename, [date] desc;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT x.* 
+FROM ( SELECT DISTINCT name FROM whiteops.install_service ) c 
+CROSS APPLY ( 
+	SELECT TOP 100 hce.date [Date], ts.name [Task Status], ins.agent_name [Agent Name], ins.name [Service Name], hce.title [Title], hce.details [Details], hce.level_enum_id [Level Enum Id]
+	from [whiteops].[health_center_event]  hce, whiteops.install_service ins, whiteops.task_status ts 
+	where ins.id = hce.source_id and hce.task_status_enum_id = ts.id and c.name=ins.name order by source_id, [date] desc) x 
+order by [Service Name], [Date] desc;")]
         public string healthCenter {
             get {
                 return ((string)(this["healthCenter"]));
@@ -165,12 +200,63 @@ namespace SecurityIQConfigExporter {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("select u.name, u.first_name + \' \' + u.last_name FullName, u.last_login LastSIQlog" +
-            "in, ra.user_full_name ConnectedUser from whiteops.[user] u left join whiteops.ra" +
-            "_user ra on u.ra_user_id = ra.id;")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"select u.name [User Name], u.first_name + ' ' + u.last_name [Full Name], u.last_login [Last SIQ Login], ra.user_full_name [Connected User] 
+from whiteops.[user] u 
+left join whiteops.ra_user ra on u.ra_user_id = ra.id
+order by [User Name];
+select u.name [User Name], u.first_name + ' ' + u.last_name [Full Name], u.last_login [Last SIQ Login], ra.user_full_name [Connected User] 
+from whiteops.[user] u 
+left join whiteops.ra_user ra on u.ra_user_id = ra.id
+order by [User Name];")]
         public string users {
             get {
                 return ((string)(this["users"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SELECT [create_date] as [Create Date], [compatibility_level] as [Compatability Le" +
+            "vel], is_broker_enabled as [SQL Broker Enabled], collation_name as [DB Collation" +
+            "], recovery_model_desc as [Recovery Model] FROM sys.databases WHERE name = \'{0}\'" +
+            ";")]
+        public string dbInfo2 {
+            get {
+                return ((string)(this["dbInfo2"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"SELECT top 25
+    t.NAME AS [Table Name],
+    s.Name AS [Schema Name],
+    p.rows AS [Row Counts],
+    CAST(ROUND(((SUM(a.total_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS [Total Space MB], 
+    CAST(ROUND(((SUM(a.used_pages) * 8) / 1024.00), 2) AS NUMERIC(36, 2)) AS [Used Space MB], 
+    CAST(ROUND(((SUM(a.total_pages) - SUM(a.used_pages)) * 8) / 1024.00, 2) AS NUMERIC(36, 2)) AS [Unused Space MB]
+FROM 
+    sys.tables t
+INNER JOIN      
+    sys.indexes i ON t.OBJECT_ID = i.object_id
+INNER JOIN 
+    sys.partitions p ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
+INNER JOIN 
+    sys.allocation_units a ON p.partition_id = a.container_id
+LEFT OUTER JOIN 
+    sys.schemas s ON t.schema_id = s.schema_id
+WHERE 
+    t.NAME NOT LIKE 'dt%' 
+    AND t.is_ms_shipped = 0
+    AND i.OBJECT_ID > 255
+GROUP BY 
+    t.Name, s.Name, p.Rows
+ORDER BY 
+    [Total Space MB] desc
+")]
+        public string dbInfo3 {
+            get {
+                return ((string)(this["dbInfo3"]));
             }
         }
     }

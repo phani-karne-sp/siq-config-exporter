@@ -2,6 +2,7 @@
 using WBX.whiteOPS.ServerCore;
 using Microsoft.Win32;
 using SecurityIQConfigExporter.Properties;
+using WBX.whiteOPS.DAO.NHibernate;
 
 namespace SecurityIQConfigExporter
 {
@@ -78,6 +79,25 @@ namespace SecurityIQConfigExporter
                 Console.WriteLine("Press any key to exit.");
                 Console.ReadKey();
             }
+        }
+
+        public static string GetDbName()
+        {
+            _log.InfoFormat("enter {0}", System.Reflection.MethodBase.GetCurrentMethod().Name);
+            string dbName = string.Empty;
+            string connString = NHibernateHelper.getConnectionString(NHibernateHelper.DatabaseType.Primary);
+            _log.DebugFormat("connection string: {0}", connString);
+            string[] connStringArray = connString.Split(';');
+            foreach (var item in connStringArray)
+            {
+                if (item.StartsWith("initial catalog"))
+                {
+                    dbName = item.Substring(item.IndexOf("=") + 1);
+                }
+            }
+            _log.DebugFormat("dbName: {0}", dbName);
+            _log.InfoFormat("exit {0}", System.Reflection.MethodBase.GetCurrentMethod().Name);
+            return dbName;
         }
     }
 }

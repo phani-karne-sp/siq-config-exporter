@@ -3,13 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="dbInfo" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">DB Info</Value>
+      <Value Profile="(Default)">Database</Value>
     </Setting>
     <Setting Name="siqConfig" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Misc Config</Value>
-    </Setting>
-    <Setting Name="email" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Email</Value>
     </Setting>
     <Setting Name="license" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Licenses</Value>
@@ -18,10 +15,10 @@
       <Value Profile="(Default)">Core Services</Value>
     </Setting>
     <Setting Name="idc" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">IDC</Value>
+      <Value Profile="(Default)">Identity Collector (IDC)</Value>
     </Setting>
     <Setting Name="wpc" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">WPC</Value>
+      <Value Profile="(Default)">Data Enrichment (DEC)</Value>
     </Setting>
     <Setting Name="apps" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Apps</Value>

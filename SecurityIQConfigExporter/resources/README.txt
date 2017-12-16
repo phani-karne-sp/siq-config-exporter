@@ -17,3 +17,13 @@ Released
 
 06/27/2017 5.1.0.0
 - Added option to use the nHibernate connections string credentials or use the user supplied credentials
+
+2017 12 16 (Sat) 5.1.0.1
+- nHibernate reg key is now only way to use tool - must run on a SIQ server.
+- compiled and includes references/DLLs for 5.1p0 - no longer dynamically resolves libraries
+- simplified menu for execution (interative use)
+- allows for command line usage to export config settings e.g. SecurityIQConfigExporter.exe exportConfig 
+- revised name for xlsx output
+- revised formatting and updated queries for output
+- revised various app config settings
+- added more logging statements throughout program (info, debug levels)
