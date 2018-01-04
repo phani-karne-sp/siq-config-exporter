@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using WBX.whiteOPS.DAO.NHibernate;
+using SecurityIQConfigExporter.Properties;
 
 namespace SecurityIQConfigExporter
 {
@@ -22,12 +23,29 @@ namespace SecurityIQConfigExporter
                     //note we need to format a couple strings here that contain {0} for db name
                     string query = (string)item.DefaultValue;
                     query = string.Format(query, Util.GetDbName());
+                    if (!Settings.Default.enableTableRowCounts && string.Equals(item.Name, Settings.Default.rowCountQueryName))
+                    {
+                        //if we disabled row counts, don't run that query!
+                        CreateFakeRowCountTable(ds, item);
+                        continue;
+                    }
                     DataTable dt = getDataTable(dbConn, item.Name, query);
                     ds.Tables.Add(dt);
                 }
             }
 
             return ds;
+        }
+
+        private static void CreateFakeRowCountTable(DataSet ds, SettingsProperty item)
+        {
+            _log.DebugFormat("row counts disabled, skipping query {0}", item.Name);
+            DataTable table = new DataTable(item.Name);
+            table.Columns.Add("Description", typeof(string));
+            table.Columns.Add("Notes", typeof(string));
+            table.Rows.Add("enableTableRowCounts is false",
+                "Row counts skipped. This may be acceptable, as row counts can use considerable resources in large installations. If you really want row counts and are willing to accept the potential performance impact, change enableTableRowCounts in the program's XML config to 'true' and re-run the tool.");
+            ds.Tables.Add(table);
         }
 
         private DataTable getDataTable(SqlConnection dbConn, string tableName, string query)

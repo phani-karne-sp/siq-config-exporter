@@ -40,5 +40,23 @@ namespace SecurityIQConfigExporter.Properties {
                 return ((string)(this["siqHomeLogsEnvVar"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool enableTableRowCounts {
+            get {
+                return ((bool)(this["enableTableRowCounts"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("dbInfo3")]
+        public string rowCountQueryName {
+            get {
+                return ((string)(this["rowCountQueryName"]));
+            }
+        }
     }
 }
